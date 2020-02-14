@@ -1,6 +1,7 @@
-const domain = 'https://connect.facebook.net/zh_TW/sdk/xfbml.customerchat.js'
+const domain = 'https://connect.facebook.net'
 
 const loadScript = () => {
+  console.log('loadScript');
   if (window.FB) return
 
   ! (function loadFacebookSDK(d, s, id) {
@@ -8,9 +9,13 @@ const loadScript = () => {
     if (d.getElementById(id)) {
       return;
     }
+    var chat = d.createElement('div');
+    chat.className = "fb-customerchat";
+    chat.setAttribute("page_id", "227685837266552");
+    d.body.appendChild(chat);
     var js = d.createElement(s);
     js.id = id;
-    js.src = domain;
+    js.src = `${domain}/zh_TW/sdk/xfbml.customerchat.js`;
     if (fjs) {
       fjs.parentNode.insertBefore(js, fjs);
     } else {
@@ -29,14 +34,13 @@ const load = ({ providerKey }) => {
       version: 'v3.2'
     });
     console.log("init")
-    window.FB.CustomerChat.show(false);
   };
 }
 
 const open = () => {
   console.log("open")
   window.FB.CustomerChat.showDialog();
-  
+
 }
 const close = () => {
   console.log("close")

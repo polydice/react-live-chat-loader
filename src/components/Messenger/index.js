@@ -23,7 +23,7 @@ const Provider = () => {
   if (state === STATES.COMPLETE) return null
 
   return (
-    <div 
+    <div
       style={styles.button}
       onClick={() => loadChat({ open: true })}
       onMouseEnter={() => loadChat({ open: false })}
