@@ -1,21 +1,28 @@
 const domain = 'https://connect.facebook.net'
 
-const loadScript = () => {
-  console.log('loadScript');
+const createCustomerchat = (pageID) => {
+  if(!document.querySelector('.fb-customerchat')) {
+    const chat = window.document.createElement('div');
+    chat.className = "fb-customerchat";
+    chat.setAttribute("page_id", pageID);
+    window.document.body.appendChild(chat);
+  }
+}
+
+const loadScript = (locale, pageID) => {
   if (window.FB) return
 
-  ! (function loadFacebookSDK(d, s, id) {
+  !(function loadFacebookSDK(d, s, id) {
+    // create customerchat
+    createCustomerchat(pageID);
+    // fetch customerchat.js
     var fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) {
       return;
     }
-    var chat = d.createElement('div');
-    chat.className = "fb-customerchat";
-    chat.setAttribute("page_id", "227685837266552");
-    d.body.appendChild(chat);
     var js = d.createElement(s);
     js.id = id;
-    js.src = `${domain}/zh_TW/sdk/xfbml.customerchat.js`;
+    js.src = `${domain}/${locale}/sdk/xfbml.customerchat.js`;
     if (fjs) {
       fjs.parentNode.insertBefore(js, fjs);
     } else {
@@ -24,8 +31,8 @@ const loadScript = () => {
   })(window.document, 'script', 'facebook-jssdk');
 }
 
-const load = ({ providerKey }) => {
-  loadScript();
+const load = ({ providerKey, locale, pageID }) => {
+  loadScript(locale, pageID);
   window.fbAsyncInit = function() {
     window.FB.init({
       appId: providerKey,
@@ -33,19 +40,11 @@ const load = ({ providerKey }) => {
       xfbml: true,
       version: 'v3.2'
     });
-    console.log("init")
   };
 }
 
-const open = () => {
-  console.log("open")
-  window.FB.CustomerChat.showDialog();
-
-}
-const close = () => {
-  console.log("close")
-  window.FB.CustomerChat.hideDialog();
-}
+const open = () => {}
+const close = () => {}
 
 export default {
   domain,

@@ -6,28 +6,37 @@ import STATES from '../../utils/states'
 const styles = {
   button: {
     appearance: 'none',
-    userSelect: 'none',
-    right: '20px',
-    bottom: '20px',
+    background: 'none',
+    borderRadius: '50%',
+    bottom: '18pt',
+    display: 'inline',
+    height: '45pt',
+    padding: '0px',
     position: 'fixed',
-    zIndex: '999',
+    right: '18pt',
+    top: 'auto',
+    width: '45pt',
+    zIndex: '2147483646',
+    overflow: 'hidden',
+    boxShadow: '0 3px 12px rgba(0, 0, 0, .15)',
+    transition: 'box-shadow 150ms linear',
     cursor: 'pointer',
-    WebkitTapHighlightColor: 'transparent',
-    outline: 'none'
-  },
-}
+    outline: 'none',
+    userSelect: 'none'
+  }
+};
 
 const Provider = () => {
-  const [state, loadChat] = useChat({ loadWhenIdle: true })
+  const [state, loadChat] = useChat({ loadWhenIdle: true });
 
-  if (state === STATES.COMPLETE) return null
+  if (state === STATES.COMPLETE) return null;
 
   return (
     <div
       style={styles.button}
       onClick={() => loadChat({ open: true })}
       onMouseEnter={() => loadChat({ open: false })}
-      >
+    >
       <svg width="60px" height="60px" viewBox="0 0 60 60">
         <svg x="0" y="0" width="60px" height="60px">
           <defs>
@@ -61,7 +70,7 @@ const Provider = () => {
         </svg>
       </svg>
     </div>
-  )
-}
+  );
+};
 
 export default Provider

@@ -5,20 +5,10 @@ import Providers from './providers'
 
 export const LiveChatLoaderContext = createContext()
 
-export const LiveChatLoaderProvider = ({
-  providerKey,
-  provider,
-  idlePeriod,
-  children
-}) => {
+export const LiveChatLoaderProvider = props => {
   const [state, setState] = useState(STATES.INITIAL)
-  const value = {
-    provider,
-    providerKey,
-    idlePeriod,
-    state,
-    setState
-  }
+  const { provider, children } = props;
+  const value = {...props, state, setState}
 
   const chatProvider = Providers[provider]
 
@@ -39,6 +29,7 @@ export const LiveChatLoaderProvider = ({
 }
 
 LiveChatLoaderProvider.defaultProps = {
+  locale: 'en_US',
   idlePeriod: 5000
 }
 
