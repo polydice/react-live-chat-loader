@@ -43,8 +43,12 @@ const load = ({ providerKey, locale, pageID }) => {
   };
 }
 
-const open = () => {}
-const close = () => {}
+const open = () => {
+  window.FB.CustomerChat.show(false);
+}
+const close = () => {
+  window.FB.CustomerChat.hide();
+}
 
 export default {
   domain,

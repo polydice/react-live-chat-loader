@@ -190,10 +190,9 @@ the `Intercom` component.
 <details>
 <summary>Messenger</summary>
 
-To use Messenger import the `LiveChatLoaderProvider` and set the `provider` prop
-as `messenger` and the `providerKey` prop as your Facebook App ID.
+To use Messenger, import the `LiveChatLoaderProvider` and then set the `provider` prop as `messenger`, the `providerKey` prop as your Facebook App ID, and the `pageID` prop as your Facebook Page ID.
 
-To use Messenger you have to set two additional props, set the `pageID` prop as your Facebook Page ID and `locale` prop if you prefer any locales. the default locale is `en_US`
+In addition, you can set an optional `locale` prop, and the default value is `en_US`.
 
 Then import the `Messenger` component.
 
@@ -212,8 +211,7 @@ export default class App extends React.Component {
 }
 ```
 
-More locale information, 
-https://developers.facebook.com/docs/internationalization
+For list of locale option value, please refer to [Facebook Localization document](https://developers.facebook.com/docs/internationalization).
 
 </details>
 

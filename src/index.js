@@ -8,7 +8,7 @@ export const LiveChatLoaderContext = createContext()
 export const LiveChatLoaderProvider = props => {
   const [state, setState] = useState(STATES.INITIAL)
   const { provider, children } = props;
-  const value = {...props, state, setState}
+  const value = {state, setState, ...props }
 
   const chatProvider = Providers[provider]
 
@@ -29,7 +29,6 @@ export const LiveChatLoaderProvider = props => {
 }
 
 LiveChatLoaderProvider.defaultProps = {
-  locale: 'en_US',
   idlePeriod: 5000
 }
 

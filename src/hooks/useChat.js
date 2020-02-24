@@ -14,7 +14,7 @@ const connection =
 let scriptLoaded = false
 
 const useChat = ({ loadWhenIdle } = {}) => {
-  const { provider, providerKey, idlePeriod, state, setState, locale, pageID } = useContext(
+  const { provider, providerKey, idlePeriod, state, setState, pageID, locale = 'en_US' } = useContext(
     LiveChatLoaderContext
   )
 
@@ -72,7 +72,7 @@ const useChat = ({ loadWhenIdle } = {}) => {
       return
     }
 
-    if(provider && provider === 'messenger' && !pageID) {
+    if (provider && provider === 'messenger' && !pageID) {
       //eslint-disable-next-line no-console
       console.error('No page id given to messenger provider')
       return
@@ -84,7 +84,7 @@ const useChat = ({ loadWhenIdle } = {}) => {
 
     if (!scriptLoaded) {
       scriptLoaded = true
-      chatProvider.load({ providerKey, state, setState, locale, pageID })
+      chatProvider.load({ providerKey, state, setState, pageID, locale })
       setTimeout(() => setState(STATES.COMPLETE), 2000)
     }
 
